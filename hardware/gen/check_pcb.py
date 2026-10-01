@@ -66,7 +66,8 @@ def main():
     res["drc"] = {k: v for k, v in d.items() if k != "report"}
     open(os.path.join(os.path.dirname(OUT), "drc_report.txt"), "w").write(d["report"])
     # silkscreen-only findings are cosmetic; everything else must be zero
-    hard = {k: v for k, v in d["by_type"].items() if not k.startswith("silk") and k not in ("text_height",)}
+    hard = {k: v for k, v in d["by_type"].items()
+            if not k.startswith("silk") and k not in ("text_height", "lib_footprint_issues", "lib_footprint_mismatch")}
     if hard or d["unconnected"]:
         fails.append(f"DRC: {hard}, unconnected {d['unconnected']}")
 

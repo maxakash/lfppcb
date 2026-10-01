@@ -20,6 +20,7 @@ Outputs hardware/kicad/lfp8.kicad_pcb (placed + pre-routed) and lfp8.dsn.
 import json
 import math
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -33,7 +34,7 @@ import lfp8_circuit                      # noqa: E402
 from make_sch import uid                 # noqa: E402
 from sexpr import parse, find, find_all  # noqa: E402
 
-KDIR = os.path.normpath(os.path.join(HERE, "..", "kicad"))
+KDIR = os.environ.get("LFP8_KDIR") or os.path.normpath(os.path.join(HERE, "..", "kicad"))
 FPDIR = "/usr/share/kicad/footprints"
 PCB = os.path.join(KDIR, "lfp8.kicad_pcb")
 
@@ -592,6 +593,35 @@ class BoardBuilder:
         return PCB
 
 
+def board_fixups(board):
+    """Post-placement fixes, idempotent (also run after routing):
+    * ESP32-C3 module footprint: its 12 thermal vias have 0.2 mm drills (JLCPCB 2-layer
+      standard minimum is 0.3 mm) - keep 6 of them (1.1 mm pitch) at 0.3 mm.
+    * silkscreen: references of 2/3-pad passives, diodes and transistors move to F.Fab
+      (they would overlap on a board this dense); ICs, connectors, switches keep theirs.
+    """
+    for fp in board.GetFootprints():
+        ref = fp.GetReference()
+        if "ESP32-C3-WROOM" in fp.GetFPIDAsString():
+            org = fp.GetPosition()
+            for p in fp.Pads():
+                if p.GetAttribute() == pcbnew.PAD_ATTRIB_PTH and p.GetDrillSize().x < pcbnew.FromMM(0.3):
+                    # position relative to the footprint (the module is never rotated here)
+                    rx = round((p.GetPosition().x - org.x) / 1e6, 2)
+                    if abs(rx - 0.41) < 0.05 or abs(rx - 1.51) < 0.05:
+                        p.SetDrillSize(pcbnew.VECTOR2I(pcbnew.FromMM(0.3), pcbnew.FromMM(0.3)))
+                    else:
+                        # lies inside the module's central GND pad anyway: make it a plain SMD pad
+                        p.SetAttribute(pcbnew.PAD_ATTRIB_SMD)
+                        p.SetDrillSize(pcbnew.VECTOR2I(0, 0))
+                        p.SetLayerSet(pcbnew.PAD.SMDMask())
+        prefix = re.sub(r"\d.*", "", ref)
+        if prefix in ("R", "C", "D", "Q", "F") and len(fp.Pads()) <= 4:
+            fp.Reference().SetLayer(pcbnew.F_Fab)
+        if prefix == "H":
+            fp.Reference().SetVisible(False)
+
+
 def write_project():
     """KiCad 7 project file with net classes and JLCPCB-friendly design rules."""
     pro = os.path.join(KDIR, "lfp8.kicad_pro")
@@ -634,9 +664,9 @@ def main():
     bb = BoardBuilder()
     bb.build()
     bb.zones()
+    board_fixups(bb.b)
     path = bb.save()
     write_project()
-    json.dump([(n, l, w, a, b) for (n, l, w, a, b) in bb.pre], open(os.path.join(KDIR, "..", "gen", "preroutes.json"), "w"))
     dsn = os.path.join(KDIR, "lfp8.dsn")
     ok = pcbnew.ExportSpecctraDSN(bb.b, dsn)
     print("placed", len(bb.fps), "footprints;", "DSN" if ok else "DSN FAILED", dsn)

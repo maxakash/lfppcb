@@ -156,7 +156,11 @@ def finish(board):
     """Top GND pour and thermal copper zones, then fill everything."""
     OX, OY = MP.OX, MP.OY
 
+    existing = {z.GetZoneName() for z in board.Zones()}
+
     def zone(netname, layer, poly, prio, solid=False, name=""):
+        if name and name in existing:      # idempotent (route_pcb.py --reuse)
+            return
         z = pcbnew.ZONE(board)
         z.SetLayer(layer)
         z.SetNet(board.FindNet(netname))
@@ -185,6 +189,7 @@ def finish(board):
                                               (x0 + 19.0, 119.3)], 3, solid=True, name=f"BP_{k}")
         zone(f"/ch{k}/DLOAD_{k}", pcbnew.F_Cu, [(x0 + 13.9, 102.9), (x0 + 18.4, 102.9), (x0 + 18.4, 119.3),
                                                 (x0 + 13.9, 119.3)], 3, solid=True, name=f"DLOAD_{k}")
+    MP.board_fixups(board)
     filler = pcbnew.ZONE_FILLER(board)
     filler.Fill(board.Zones())
 
