@@ -1,0 +1,194 @@
+{
+  "board_short": {
+    "i_end_A": 0.159126795,
+    "i_peak_A": 12.0039579,
+    "ptc_trip_s": 0.22101391999999997
+  },
+  "brownout": {
+    "i_end_A": -8.06056117e-05,
+    "max_reverse_current_mA": 0.0806056624,
+    "rail_V_when_SAFE_dropped": 4.48249128
+  },
+  "cc_cv_charge_cycle": {
+    "i_cc_A": 0.970360896858023,
+    "i_end_A": -0.000169514533,
+    "soc_end": 1.01320682,
+    "v_cell_end_V": 3.5823364683432,
+    "v_cell_max_V": 3.592922878
+  },
+  "cell_removed": {
+    "bp_max_V": 5.1118346,
+    "ov_latch_released": true
+  },
+  "discharge": {
+    "i_dis_A": -1.074772627642,
+    "r_load_eff_ohm": 3.057370461979181,
+    "v_cell_V": 3.2859780850963998
+  },
+  "discharge_refused_low_cell": {
+    "i_A": -0.00011725411988776,
+    "v_cell_V": 2.499993614394966
+  },
+  "empty_slot": {
+    "giso_idle_V": 5.19291882,
+    "ripple_open_mV": 0.00047177000039866357,
+    "v_open_charging_V": 3.5716863326083077,
+    "v_reading_idle_V": 0.032737086466420005
+  },
+  "estop": {
+    "i_after_A": -0.000114243348,
+    "isolation_delay_us": 125.55799999999783
+  },
+  "hotplug": {
+    "bp_open_circuit_max_V": 5.10859986,
+    "i_inrush_peak_A": 1.40927371,
+    "i_settled_A": 1.00739517,
+    "ov_latched": false
+  },
+  "interlock": {
+    "cell_after_A": -1.0748414882600001,
+    "charge_path_after_A": -1.9974999999986903e-05,
+    "charge_path_before_A": 0.9870057098033332
+  },
+  "ir_measurement": {
+    "expected_dc_mohm": 11.541301597945461,
+    "expected_ohmic_mohm": 8.080038570665725,
+    "pulse_current_A": 1.073335727615,
+    "r_dc_mohm": 11.596853841164343,
+    "r_ohmic_mohm": 8.133506707555512,
+    "two_wire_reading_mohm": 131.46200259159187
+  },
+  "iset_dac_table": {
+    "iset0_A": -0.0001603512164047976,
+    "iset1_A": 0.26004249674162916,
+    "iset2_A": 0.5173997445312344,
+    "iset3_A": 0.7722085861074462,
+    "iset4_A": 1.0034933644727637,
+    "iset5_A": 1.0025019847426289,
+    "iset6_A": 1.0025006365817093,
+    "iset7_A": 1.0024999301649176
+  },
+  "loop_stability": {
+    "cc_corners": 23.0,
+    "cc_fc_max_Hz": 1299.2902778277646,
+    "cc_fc_min_Hz": 25.830634382268666,
+    "cc_worst_pm_deg": 90.28627581461423,
+    "cv_corners": 7.0,
+    "cv_worst_pm_deg": 94.01404327068185
+  },
+  "monte_carlo": {
+    "cv_max_V": 3.6229346896330537,
+    "cv_mean_V": 3.5762015629822628,
+    "cv_min_V": 3.508582317936767,
+    "cv_std_mV": 26.692426102385188,
+    "margin_ov_minus_cv_mV": 154.58106699272057,
+    "ov_max_V": 3.872042770905296,
+    "ov_mean_V": 3.822282879179967,
+    "ov_min_V": 3.777515756625774,
+    "runs": 100.0
+  },
+  "open_sense_n": {
+    "i_end_A": 5.81578492e-06,
+    "v_cell_true_max_V": 3.5782317982415
+  },
+  "open_sense_p": {
+    "i_end_A": 5.87327337e-06,
+    "v_cell_true_max_V": 3.5827200567099
+  },
+  "overtemp_25C": {
+    "safe_en_V": 4.781324089999999,
+    "ts_V": 0.6009724099999998
+  },
+  "overtemp_70C": {
+    "safe_en_V": 4.705210762292337,
+    "ts_V": 0.5122961850000001
+  },
+  "overtemp_95C": {
+    "safe_en_V": 0.024656940999999998,
+    "ts_V": 0.4624200969999999
+  },
+  "pass_fet_short": {
+    "giso_end_V": 0.0129216287,
+    "i_end_A": -1.64737944e-05,
+    "ovo_end_V": 0.00514228466,
+    "v_cell_max_V": 3.823865169
+  },
+  "rail_ov_6V": {
+    "cell_current_during_A": 0.000114033511,
+    "safe_en_during_V": 0.0740118948,
+    "safe_en_recovered_V": 4.78132409
+  },
+  "reverse_hotplug_charging": {
+    "charge_mC": 0.04826961422617011,
+    "duration_above_50mA_ms": 0.05155600000000815,
+    "i_peak_A": 28.1125609,
+    "i_steady_A": 5.75135975e-05
+  },
+  "reverse_polarity_charge": {
+    "giso_V": 0.0425867598,
+    "i_peak_A": 0.000126412713,
+    "i_steady_A": 5.74593882e-05,
+    "min_ic_input_V": -0.462588767
+  },
+  "reverse_polarity_discharge": {
+    "giso_V": 0.0383741132,
+    "i_peak_A": 0.000126412713,
+    "i_steady_A": 9.85913238e-05,
+    "min_ic_input_V": -0.462588767
+  },
+  "reverse_polarity_idle": {
+    "giso_V": 0.0300850577,
+    "i_peak_A": 0.000126412713,
+    "i_steady_A": 9.54741232e-05,
+    "min_ic_input_V": -0.462588767
+  },
+  "sr_high_z": {
+    "i_cell_A": 0.000170689076
+  },
+  "thermal": {
+    "P_Q4_W": 0.05271330760675842,
+    "P_Rload_each_W": 1.0146111139994702,
+    "P_board_8ch_discharge_W": 32.89366901831188,
+    "P_channel_discharge_W": 4.111708627288985,
+    "P_shunt_W": 0.1476198639322471,
+    "cont_3V05_I_A": 1.0294323655189623,
+    "cont_3V05_P_D1_avg_W": 0.37809291249301974,
+    "cont_3V05_P_Q1_avg_W": 0.31615523872204665,
+    "cont_3V05_P_Rch_avg_W": 1.2716771942135625,
+    "cont_3V05_Vcell_V": 3.058384313718563,
+    "discharge_I_A": 1.2149891519361278,
+    "pulsed_2V85_I_A": 1.0292002353792415,
+    "pulsed_2V85_P_D1_avg_W": 0.1889961481967796,
+    "pulsed_2V85_P_Q1_avg_W": 0.26762492497925433,
+    "pulsed_2V85_P_Rch_avg_W": 0.6355518747028122,
+    "pulsed_2V85_Vcell_V": 2.8457923678522956
+  },
+  "unpowered_drain": {
+    "i_drain_uA": 80.77356303960397,
+    "mAh_per_month": 58.15696538851486
+  },
+  "uv_backstop": {
+    "restarted": false,
+    "v_rest_after_V": 2.2188925536588,
+    "v_trip_under_load_V": 2.2175812558
+  },
+  "watchdog_frequency": {
+    "1000Hz_safe_min_V": 4.78132409,
+    "100Hz_safe_min_V": 4.78132409,
+    "200Hz_safe_min_V": 4.78132409,
+    "20Hz_safe_min_V": 0.0466387535,
+    "50Hz_safe_min_V": 0.0468920516
+  },
+  "watchdog_high": {
+    "i_after_A": -0.000113985282,
+    "oe_n_after_V": 5.19999984,
+    "safe_en_rise_s": 0.060002971,
+    "trip_delay_ms": 32.82100300000002
+  },
+  "watchdog_low": {
+    "i_after_A": -0.000113984095,
+    "oe_n_after_V": 5.19999984,
+    "safe_en_rise_s": 0.060002971,
+    "trip_delay_ms": 22.889565999999974
+  }
+}

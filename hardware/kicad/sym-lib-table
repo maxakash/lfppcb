@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name "LFP8")(type "KiCad")(uri "${KIPRJMOD}/lib/LFP8.kicad_sym")(options "")(descr "LFP-8 project symbols"))
+)

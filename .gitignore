@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+# simulation scratch (netlists, logs, raw data) - summary.json is kept
+sim/results/*
+!sim/results/summary.json
+# KiCad caches / backups
+*-backups/
+fp-info-cache
+*.kicad_prl
+*.lck
+_autosave-*
+hardware/kicad/*.dsn
+hardware/kicad/*.ses
+hardware/kicad/freerouting*.log
+# firmware build output
+firmware/build/

@@ -1,0 +1,161 @@
+* =============================================================================
+* LFP-8 SPICE model library (ngspice >= 38)
+* Behavioural / fitted models for the parts used on the LFP-8 board.
+* Datasheet anchors are noted next to each model.  These models are meant for
+* functional, stability and fault-injection analysis, not for sign-off of
+* absolute-maximum ratings.
+* =============================================================================
+
+* -----------------------------------------------------------------------------
+* LM324 / LM358 single op-amp section (LM324DT C71035, LM358DR2G C7950)
+*   GBW 1.2 MHz, Aol 100 dB, SR 0.5 V/us, Vout high = VCC-1.5 V, low = 5 mV
+*   Isource 30 mA, Isink 15 mA, input CM range 0 .. VCC-1.5 V
+*   Parameter VOS = input offset (V) for Monte-Carlo / corner analysis.
+* pins: in+ in- vcc vee out
+* -----------------------------------------------------------------------------
+.subckt LM324 inp inn vcc vee out params: VOS=0
+Vos inp inp2 DC {VOS}
+* input bias currents (into the pins, ~20 nA)
+Ibp inp vee DC 20n
+Ibn inn vee DC 20n
+* input stage: transconductance with tanh slew limiting into C1 (dominant pole)
+* gm = 7.5 mS, Imax = 0.5 mA, C1 = 1 nF  -> SR = 0.5 V/us; R1 = 13.3 MEG -> Aol 1e5
+Bgm 0 n1 I = 0.5m*tanh(7.5m*(V(inp2)-V(inn))/0.5m)
+R1 n1 vmid 13.3MEG
+C1 n1 vmid 1n
+Bmid vmid 0 V = 0.5*(V(vcc)+V(vee))
+* clamp the integrator to the output swing range (prevents unrealistic wind-up)
+Bhi hiref 0 V = V(vcc) - 1.45
+Blo loref 0 V = V(vee) + 0.003
+Bcl n1 0 I = 0.1*(max(V(n1)-V(hiref),0) - max(V(loref)-V(n1),0))
+* second pole ~ 3 MHz
+Ep2 n2a 0 n1 0 1
+Rp2 n2a n2 1k
+Cp2 n2 0 53p
+* output stage: 50 ohm, current limited (source 30 mA / sink 15 mA)
+Bout 0 out I = max(min((V(n2)-V(out))/50, 30m), -15m)
+Rleak out vee 10MEG
+Cout out vee 20p
+* supply current 0.35 mA per section, drawn from vcc to vee
+Bq vcc vee I = 0.35m*(1-exp(-max(V(vcc,vee),0)/0.5))
+.ends LM324
+
+* -----------------------------------------------------------------------------
+* LM393 comparator section, open-collector output (LM393DR2G C7955)
+*   Response ~0.5 us, Vol 0.15 V @ 4 mA (Ron ~ 40 ohm), Isink limit 16 mA.
+*   Output is off (high-Z) when the supply is below 1.8 V.
+* pins: in+ in- vcc gnd out
+* -----------------------------------------------------------------------------
+.subckt LM393 inp inn vcc gnd out params: VOS=0
+Vos inp inp2 DC {VOS}
+* decision node with ~0.3 us time constant, 0..1 (1 = output transistor ON)
+Bd nd 0 V = 0.5*(1 - tanh((V(inp2)-V(inn))/0.5m))
+Rd nd nd2 1k
+Cd nd2 0 300p
+Bpwr npw 0 V = 0.5*(1 + tanh((V(vcc,gnd)-1.8)/0.05))
+Bout out gnd I = V(nd2)*V(npw)*min(max(V(out,gnd),0)/40, 16m)
+Rleak out gnd 100MEG
+Cout out gnd 10p
+Bq vcc gnd I = 0.4m*V(npw)
+.ends LM393
+
+* -----------------------------------------------------------------------------
+* CJ431 / TL431 shunt reference (CJ431 C3113)
+*   Vref = 2.495 V, dynamic impedance 0.2 ohm, Ika_min ~ 0.5 mA.
+* pins: k a ref
+* -----------------------------------------------------------------------------
+.subckt TL431 k a ref params: VREF0=2.495
+Bi k a I = max(0, 5*(V(ref,a)-{VREF0})) * 0.5*(1+tanh((V(k,a)-1.9)/0.05)) + 0.3m*(1-exp(-max(V(k,a),0)/0.3))
+Rleak ref a 1G
+.ends TL431
+
+* -----------------------------------------------------------------------------
+* MOSFETs (ngspice VDMOS)
+* AO3400A (C20917) N 30 V: Vth 1.05 V, Rds(on) 28 mOhm@4.5 V, 48 mOhm@2.5 V,
+*   Ciss 630 pF, Crss 50 pF, body diode Vf 0.7 V @ 1 A
+* -----------------------------------------------------------------------------
+.model AO3400A VDMOS(Vto=1.05 Kp=14.5 Rd=8m Rs=2m Rg=3 lambda=0.01
++ Cgdmax=120p Cgdmin=120p Cgs=550p Cjo=110p M=0.5 Vj=0.7
++ Is=2e-11 N=1.15 Rb=20m BV=30 IBV=10u Tt=10n)
+* AO3401A (C15127) P 30 V: Vth -0.9 V, Rds(on) 55 mOhm@-4.5 V, 85 mOhm@-2.5 V
+.model AO3401A VDMOS(pchan Vto=-0.9 Kp=6.9 Rd=10m Rs=2m Rg=4 lambda=0.01
++ Cgdmax=150p Cgdmin=150p Cgs=600p Cjo=120p M=0.5 Vj=0.7
++ Is=2e-11 N=1.15 Rb=25m BV=30 IBV=10u Tt=10n)
+* 2N7002 (C8545) N 60 V, Rds(on) ~2 ohm @ 4.5 V
+.model 2N7002 VDMOS(Vto=1.8 Kp=0.25 Rd=0.4 Rs=0.1 Cgdmax=10p Cgdmin=3p Cgs=25p Cjo=15p Is=1e-13 BV=60)
+* BSS138 (C7420339) N 50 V, Vth 1.2 V, Rds(on) 1.2 ohm @ 4.5 V
+.model BSS138 VDMOS(Vto=1.2 Kp=0.3 Rd=0.3 Rs=0.1 Cgdmax=8p Cgdmin=2p Cgs=20p Cjo=10p Is=1e-13 BV=50)
+
+* -----------------------------------------------------------------------------
+* BJTs (classic 2N3904/2N3906 parameters, Fairchild/onsemi)
+* -----------------------------------------------------------------------------
+.model MMBT3904 NPN(IS=6.734f XTI=3 EG=1.11 VAF=74.03 BF=416.4 NE=1.259 ISE=6.734f
++ IKF=66.78m XTB=1.5 BR=.7371 NC=2 ISC=0 IKR=0 RC=1 CJC=3.638p MJC=.3085 VJC=.75
++ FC=.5 CJE=4.493p MJE=.2593 VJE=.75 TR=239.5n TF=301.2p ITF=.4 VTF=4 XTF=2 RB=10)
+.model MMBT3906 PNP(IS=1.41f XTI=3 EG=1.11 VAF=18.7 BF=180.7 NE=1.5 ISE=0 IKF=80m
++ XTB=1.5 BR=4.977 NC=2 ISC=0 IKR=0 RC=2.5 CJC=9.728p MJC=.5776 VJC=.75 FC=.5
++ CJE=8.063p MJE=.3677 VJE=.75 TR=33.42n TF=179.3p ITF=.4 VTF=4 XTF=6 RB=10)
+
+* -----------------------------------------------------------------------------
+* Diodes
+* SS34 (C8678) 3 A/40 V Schottky: Vf 0.36 V @ 1 A, 0.55 V @ 3 A (25 C)
+* SS54 (C22452) 5 A/40 V Schottky
+* SS14 (C2480) 1 A/40 V Schottky
+* BAT54WS (C7502694) 200 mA Schottky: Vf 0.24 V @ 0.1 mA, 0.32 V @ 1 mA
+* SMBJ6.0A (C19077560) 600 W TVS: Vbr 6.67 V min, Vc 10.3 V @ 58 A
+* LED_G 0805 green (C2297), LED_R 0603 red (C2286)
+* -----------------------------------------------------------------------------
+.model SS34 D(IS=15u N=1.15 RS=35m CJO=200p M=0.5 VJ=0.4 BV=40 IBV=0.5m TT=5n)
+.model SS54 D(IS=30u N=1.12 RS=20m CJO=350p M=0.5 VJ=0.4 BV=40 IBV=1m TT=5n)
+.model SS14 D(IS=5u N=1.15 RS=60m CJO=110p M=0.5 VJ=0.4 BV=40 IBV=0.3m TT=5n)
+.model BAT54WS D(IS=2e-8 N=1.0 RS=1 CJO=10p M=0.5 BV=30 IBV=2u)
+.model SMBJ6V0A D(IS=1e-12 N=1.5 RS=60m BV=6.9 IBV=1m CJO=3n)
+.model LED_G D(IS=1e-22 N=1.8 RS=10 BV=5 IBV=10u)
+.model LED_R D(IS=1e-18 N=1.9 RS=8 BV=5 IBV=10u)
+
+* -----------------------------------------------------------------------------
+* PTC resettable fuse 1812, 2.0 A hold / ~4 A trip (1812L200/30GR, C18198342)
+*   R25 = 50 mOhm, thermal model: Rth = 230 K/W, Cth = 16 mJ/K, switch 125 C
+*   -> holds 2 A indefinitely at 23 C, trips 8 A in ~0.5 s.
+* pins: a b
+* -----------------------------------------------------------------------------
+.subckt PTC a b params: R0=0.05 TAMB=23
+Bth 0 tj I = V(a,b)*V(a,b)/(V(rx))
+Cth tj 0 16m IC={TAMB}
+Rth tj tamb 230
+Vamb tamb 0 DC {TAMB}
+Brx rx 0 V = {R0}*(1 + 2e4*0.5*(1+tanh((V(tj)-125)/4)))
+Bi a b I = V(a,b)/V(rx)
+.ends PTC
+
+* -----------------------------------------------------------------------------
+* LiFePO4 33140 cell (15 Ah) equivalent circuit
+*   OCV(SoC) table (25 C, after rest), R0 ohmic, two RC branches,
+*   SoC integrator (1 F <-> full capacity).  QAS = capacity in A*s (scale for
+*   accelerated simulations).  SOC0 = initial state of charge (0..1).
+* pins: p n soc   (soc is a monitor node, leave it unconnected)
+* -----------------------------------------------------------------------------
+.subckt LFPCELL p n soc params: QAS=54000 SOC0=0.5 R0=8m R1=4m TAU1=0.5 R2=5m TAU2=60
+* current into p (charging) is positive.  Polarisation branches are modelled as
+* separate state variables (unit capacitors) so no huge capacitors sit in the
+* low-impedance conduction loop (keeps the integrator well conditioned).
+Csoc soc 0 1 IC={SOC0}
+Vsoc0 sinit 0 DC {SOC0}
+Rsoc soc sinit 1G
+* integrator gated off during the DC operating point (PULSE is 0 at DC)
+Vgate gate 0 PULSE(0 1 0 1n 1n 1e9 2e9)
+Bsoc 0 soc I = i(Vsense)*V(gate)/{QAS}
+* polarisation states: dv/dt = (I*R - v)/tau
+Cp1 v1 0 1
+Rp1 v1 0 {TAU1}
+Bp1 0 v1 I = i(Vsense)*{R1}/{TAU1}
+Cp2 v2 0 1
+Rp2 v2 0 {TAU2}
+Bp2 0 v2 I = i(Vsense)*{R2}/{TAU2}
+Bocv o n V = pwl(V(soc), -0.10,1.50, 0,2.50, 0.02,2.95, 0.05,3.15, 0.10,3.22, 0.20,3.26,
++ 0.30,3.285, 0.40,3.29, 0.50,3.295, 0.60,3.30, 0.70,3.315, 0.80,3.33, 0.90,3.34,
++ 0.95,3.35, 0.98,3.40, 1.00,3.45, 1.02,3.65, 1.05,3.90, 1.10,4.20, 1.20,4.60)
+Bpol r2 o V = V(v1) + V(v2)
+R0x r2 ps {R0}
+Vsense p ps DC 0
+.ends LFPCELL
