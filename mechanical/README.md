@@ -8,8 +8,8 @@ sense at each terminal) plus an NTC bead under the cell.
   **8-cell module per LFP-8 board**. 10 cradles = 40 cells.
 * **Board stand**: holds one LFP-8 PCB vertically next to the module, with 4 × M3
   standoffs and a 60/80 mm 5 V fan under the board blowing up across both faces.
-* Accessories: **board tray** (PCB lying flat on top of a module, fan blowing across it)
-  and **pogo gauge** (sets the pogo pin protrusion).
+* Accessory: **pogo gauge** (sets the pogo pin protrusion). The earlier flat `board_tray`
+  is still in the SCAD, but it is not built: the final 216 × 146 mm PCB is larger than a cradle.
 
 Everything is generated from one OpenSCAD file. Every part prints in its modelled
 orientation **without supports** on a Creality Ender 3 S1 Pro, inside a
@@ -32,7 +32,6 @@ orientation **without supports** on a Creality Ender 3 S1 Pro, inside a
 | `stl/cradle_4cell_labels_1-4.stl` | Cradle labelled channels 1–4: the **lower** cradle of a module (print 5) |
 | `stl/cradle_4cell_labels_5-8.stl` | Cradle labelled channels 5–8: the **upper** cradle of a module (print 5) |
 | `stl/board_stand.stl` | Vertical PCB stand with fan mount (print 5) |
-| `stl/board_tray.stl` | Optional flat PCB tray that sits on top of a module |
 | `stl/pogo_gauge.stl` | Pogo protrusion gauge (print 1) |
 | `stl/params.echo` | Parameter dump (JSON in the OpenSCAD echo) that the checker reads |
 | `images/*.png` | Previews |
@@ -109,8 +108,8 @@ and 6.2–6.5 mm full stroke.
 | `pogo_hole_d` | 1.40 | Pogo bore. Press fit for P100 after reaming. Use 1.70 for R100 receptacles. |
 | `pos_pogo_preload`, `neg_pogo_preload` | 1.0, 0.5 | Pogo tip positions |
 | `label_offset` | 0 | 0 gives labels 1–4, 4 gives labels 5–8 |
-| `pcb_w`, `pcb_h`, `pcb_hole_inset` | 175, 125, 4 | LFP-8 PCB. The stand follows these values. |
-| `fan_size`, `fan_hole_spacing`, `fan_t` | 80, auto, 25 | Fan. 60 gives 50 mm hole spacing, 80 gives 71.5 mm. |
+| `pcb_w`, `pcb_h`, `pcb_hole_inset` | 146, 216, 4.5 | LFP-8 PCB (216 × 146 mm) mounted **portrait**: `pcb_w` is the horizontal side. The stand follows these values. |
+| `fan_size`, `fan_hole_spacing`, `fan_t`, `fan_dx` | 80, auto, 15, 20 | Fan: 80 × 15 mm slim fan, which keeps the stand 252 mm tall. 60 gives 50 mm hole spacing, 80 gives 71.5 mm. `fan_dx` shifts it towards the PCB's power-stage edge. |
 | `screw_pilot_d` | 2.8 | M3 self-tapping pilot. Use 4.0 for M3 heat-set inserts. |
 | `bed_x/y/z`, `bed_margin` | 220/220/270, 5 | Printer. The SCAD asserts that the cradle fits. |
 
@@ -132,9 +131,9 @@ Example: `openscad -o stl/board_stand_60mm.stl -D 'part="board_stand"' -D fan_si
 | ~10 m | Hook-up wire 22–24 AWG (silicone) | Extensions / repairs. Force wires 22–24 AWG, sense and NTC 24–28 AWG. |
 | 1 set | Heat-shrink 1.5 mm and 3 mm | Over every solder joint at pogo tails and tabs |
 | 200 | Zip ties 2.5 × 100 mm | 2 per fin (+ and − end) per cell |
-| 5 | **Fan 5 V**, 80 × 80 × 25 (or 60 × 60 × 15/25), ≤ 0.25 A | Driven by `FAN_PWM` on the LFP-8 |
+| 5 | **Fan 5 V, 80 × 80 × 15 (slim)**, ≤ 0.25 A | Driven by `FAN_PWM` on the LFP-8 (J2). A 25 mm thick fan makes the stand 262 mm tall, too tall for the S1 Pro. |
 | 20 | M3 × 8–10 pan-head screw (self-tapping into PETG, or machine screw + heat-set insert) | PCB, 4 per stand |
-| 20 | M3 × 30 (80 × 25 fan) / M3 × 20 (60 × 15 fan) | Fan, 4 per stand, self-tapping into the Ø2.8 posts |
+| 20 | M3 × 20 (80 × 15 fan) | Fan, 4 per stand, self-tapping into the Ø2.8 posts |
 | (20) | *optional* M3 heat-set inserts M3 × 5 × 4 | Rebuild with `screw_pilot_d = 4.0` |
 | (20) | *optional* M4 screws | Fix stand bases to a common base board (Ø4.5 holes) |
 | – | Tools | 1.4 mm drill bit in a pin vise (1.35 mm for a tighter press fit), soldering iron, thin CA glue (optional) |
@@ -164,10 +163,9 @@ rough Ender 3 S1 Pro model (≈4 mm³/s average, 6 s per layer, 6 min setup).
 |---|---:|---:|---:|---:|---:|
 | `cradle_4cell_labels_1-4` | 5 | 213.8 cm³ | 122 g (40 m) | 7.2 h | 611 g, 36 h |
 | `cradle_4cell_labels_5-8` | 5 | 213.8 cm³ | 122 g (40 m) | 7.2 h | 611 g, 36 h |
-| `board_stand` | 5 | 119.6 cm³ | 68 g (22 m) | 5.3 h | 342 g, 26.5 h |
+| `board_stand` | 5 | 150.5 cm³ | 86 g (28 m) | 6.9 h | 430 g, 34.5 h |
 | `pogo_gauge` | 1 | 3.0 cm³ | 2 g | 0.2 h | 2 g |
-| **Whole set** | | | | | **≈1.57 kg PETG (~2 × 1 kg spools), ≈99 h** |
-| *optional* `board_tray` (instead of a stand) | | 97.2 cm³ | 56 g | 4.0 h | |
+| **Whole set** | | | | | **≈1.65 kg PETG (~2 × 1 kg spools), ≈107 h** |
 
 Most cradle features are within 4 perimeters (ribs, rails, fins, the 3 mm floor). A slicer
 may therefore report 20–40 % more filament than the 45 % rule. Use the slicer figure for
@@ -219,9 +217,10 @@ ordering.
 9. **Board stand.**
    * Screw the fan onto the 4 posts with the airflow arrow **up**. Air enters through the
      10 mm gap under the fan.
-   * Screw the PCB onto the 4 standoffs with its component side away from the X-brace.
+   * Screw the PCB onto the 4 standoffs with its component side away from the X-brace,
+     **portrait** (long side vertical), with the JST connector edge on the side the fan is
+     offset to. The 8 power stages then sit in the fan's air stream.
    * Place the stand at the + (connector) end of the module and plug in the 8 leads.
-   * Alternatively, put the `board_tray` on top of the module (it uses the same stacking pins).
 10. **Cells.** Check the polarity marks, then insert:
     * Marks: the big **+** on the floor, the tower tops and the raceway is the **connector end**.
       **−** is at the spring end.
@@ -323,14 +322,15 @@ The script is run by `build.sh`; its output for the current design ends with **A
 * **NTC.** 10 kΩ B3950 bead, sitting on the PVC wrap at the cell's middle. Expect it to lag
   the can by minutes and read 1–3 °C low.
 * **PCB / stand.**
-  * Holes: 4 × M3 at 4 mm inset, i.e. 167 × 117 mm spacing for 175 × 125 mm. They are
-    parametric: set `pcb_w`, `pcb_h`, `pcb_hole_inset`.
+  * Holes: 4 × M3 at the PCB corners, 4.5 mm inset, i.e. 137 × 207 mm spacing for the
+    146 × 216 mm board mounted portrait. They are parametric: set `pcb_w`, `pcb_h`,
+    `pcb_hole_inset`.
   * Clearance behind the board: 8 mm. Keep bottom-side parts and leads < 6 mm.
   * The uprights cover a 12 mm-wide strip behind each pair of holes, so keep back-side parts
     > 10 mm from the left and right edges.
-  * The fan (60/80 mm) sits under the bottom edge, centred on the PCB plane, and blows up
-    along both faces. Arrange hot parts (MOSFETs, load resistors) in vertical columns, put the
-    temperature sensor downstream (top half), and keep the bottom-centre area free of tall
-    parts that would block the airflow.
+  * The fan (80 × 15 mm) sits under the bottom edge, centred on the PCB plane but shifted
+    20 mm towards the power-stage edge, and blows up along both faces. On the LFP-8 the eight
+    power stages (load resistors, pass FETs) form one strip along the JST edge, so mounted
+    portrait they are a vertical column in the air stream.
   * The component side faces the module, so the 8 JST-XH headers are best on the bottom or
     side edges of that face.

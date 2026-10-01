@@ -115,7 +115,7 @@ ADS1115 (address 0x48, VDD = 5 V):
 |----------|-----------|-----|---------|
 | Cell voltage | AIN0 − AIN1 (`0b000`) | ±4.096 V (LSB 125 µV) | `V_cell = code · 4.096/32768 · CAL_V[k]` |
 | Cell current | AIN2 − AIN3 (`0b011`) | ±0.256 V (LSB 7.8125 µV) | `I_cell = code · 0.256/32768 / R_SHUNT · CAL_I[k]` with `R_SHUNT = 0.100 Ω` |
-| Neg. sense vs shunt-gnd (diagnostic) | AIN1 − AIN3 (`0b010`) | ±0.256 V | Detects reversed cell / open B− wire |
+| Neg. sense vs shunt-gnd (diagnostic) | AIN1 − AIN3 (`0b010`) | ±1.024 V | B− contact / wiring resistance: `R = V/I − 0.156 Ω` while ≥ 0.2 A flows; > 300 mΩ ⇒ `contact_warn` |
 
 * **Sign convention:** `I_cell > 0` = charging, `I_cell < 0` = discharging.
 * `CAL_V[k]`, `CAL_I[k]` default to 1.000 (stored in NVS, editable on the web UI).

@@ -163,16 +163,17 @@ lip_digit_h = 10;
 top_digit_h = 8;
 
 /* [Board stand] */
-pcb_w = 175;            // LFP-8 PCB (parametric - may change)
-pcb_h = 125;
+pcb_w = 146;            // LFP-8 PCB 216 x 146 mm, mounted portrait: short side horizontal
+pcb_h = 216;            // long side vertical (fan air flows along the 8 power stages)
 pcb_t = 1.6;
-pcb_hole_inset = 4;     // hole centre from each edge
+pcb_hole_inset = 4.5;   // hole centre from each edge (4 x M3 at the PCB corners)
 standoff_h = 8;         // PCB back face to upright face
 standoff_d = 7;
 screw_pilot_d = 2.8;    // M3 self-tapping into PETG (4.0 for M3 heat-set inserts)
 fan_size = 80;          // 60 or 80 (40/92/120 also known)
 fan_hole_spacing = 0;   // 0 = automatic from fan_size (60->50, 80->71.5)
-fan_t = 25;             // fan thickness
+fan_t = 15;             // fan thickness (80 x 15 slim fan keeps the stand < 260 mm tall)
+fan_dx = 20;            // fan offset towards the PCB's JST / power-stage edge (clears the upright)
 fan_gap = 10;           // air intake gap below the fan
 stand_base_t = 3.2;
 upright_w = 12;
@@ -561,7 +562,7 @@ module board_stand() {
       // base frame: plate with a fan intake opening and two large side windows
       difference() {
         box([-bx, by0, 0], [bx, by1, stand_base_t]);
-        translate([0, y_fan, -1]) cylinder(d = fan_hs - 10, h = stand_base_t + 2, $fn = 96);
+        translate([fan_dx, y_fan, -1]) cylinder(d = fan_hs - 10, h = stand_base_t + 2, $fn = 96);
         for (s = [-1, 1]) {
           wx0 = fan_size/2 + 8; wx1 = hx - upright_w/2 - 6;
           if (wx1 - wx0 > 10) hull() for (x = [wx0 + 5, wx1 - 5], y = [by0 + 13, by1 - 13])
@@ -593,13 +594,13 @@ module board_stand() {
       }
       // fan posts
       for (sx = [-1, 1], sy = [-1, 1])
-        translate([sx*fan_hs/2, y_fan + sy*fan_hs/2, 0]) cylinder(d = 8, h = stand_base_t + fan_gap, $fn = 32);
+        translate([fan_dx + sx*fan_hs/2, y_fan + sy*fan_hs/2, 0]) cylinder(d = 8, h = stand_base_t + fan_gap, $fn = 32);
     }
     // M3 pilot holes for the PCB
     for (s = [-1, 1], z = zh) ycyl(yf - 12, 0.5, s*hx, z, screw_pilot_d);
     // fan screw pilots
     for (sx = [-1, 1], sy = [-1, 1])
-      translate([sx*fan_hs/2, y_fan + sy*fan_hs/2, 1.2]) cylinder(r = screw_pilot_d/2/cos(180/fn_small), h = stand_base_t + fan_gap, $fn = fn_small);
+      translate([fan_dx + sx*fan_hs/2, y_fan + sy*fan_hs/2, 1.2]) cylinder(r = screw_pilot_d/2/cos(180/fn_small), h = stand_base_t + fan_gap, $fn = fn_small);
     // screw-down holes in the base corners
     for (sx = [-1, 1], yy = [by0 + 6, by1 - 6])
       translate([sx*(bx - 6), yy, -1]) cylinder(d = 4.5, h = stand_base_t + 2, $fn = 24);
@@ -684,7 +685,7 @@ module assembly() {
   translate([-62, Y_len/2, 0]) rotate([0, 0, -90]) {
     color("LightGray") render() board_stand();
     color("ForestGreen") translate([-pcb_w/2, 0, stand_base_t + fan_gap + fan_t + 6]) cube([pcb_w, pcb_t, pcb_h]);
-    color("DimGray") translate([-fan_size/2, pcb_t/2 - fan_size/2, stand_base_t + fan_gap]) cube([fan_size, fan_size, fan_t]);
+    color("DimGray") translate([fan_dx - fan_size/2, pcb_t/2 - fan_size/2, stand_base_t + fan_gap]) cube([fan_size, fan_size, fan_t]);
   }
 }
 

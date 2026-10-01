@@ -28,7 +28,6 @@ png() {   # png <output> <camera> [openscad args...]   (preview mode keeps colou
 run stl/cradle_4cell_labels_1-4.stl -D 'part="cradle"' -D label_offset=0
 run stl/cradle_4cell_labels_5-8.stl -D 'part="cradle"' -D label_offset=4
 run stl/board_stand.stl             -D 'part="board_stand"'
-run stl/board_tray.stl              -D 'part="board_tray"'
 run stl/pogo_gauge.stl              -D 'part="pogo_gauge"'
 
 # ---- parameters for the checker -------------------------------------------
@@ -40,7 +39,7 @@ png images/cradle_4cell.png "-120,-230,250,102,96,12" --render -D 'part="cradle"
 # 2) section through one cell: contacts, pogo pins, spring, NTC (orthographic)
 png images/section_contacts.png "102,72,24,90,0,0,420" --projection=o -D 'part="section"'
 # 3) 8-cell module (2 stacked cradles) with the LFP-8 board stand
-png images/module_assembly.png "-260,-420,330,60,96,70" -D 'part="assembly"'
+png images/module_assembly.png "-400,-560,480,40,96,110" -D 'part="assembly"'
 # 4) board stand
 png images/board_stand.png "-360,430,330,0,0,80" --render -D 'part="board_stand"'
 
