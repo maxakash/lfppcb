@@ -324,6 +324,11 @@ def _attach(sheet, net, x, y, pin_angle, net_sheets, single_nets, tag=""):
     if not net or net in single_nets:
         sheet.no_connect(x, y)
         return
+    if net in POWER_NETS and out in (0, 180):
+        # sideways power pins (connector rows, IC power pins): a global label of the same
+        # name joins the power net and does not collide with the neighbouring pins
+        sheet.label(net, x, y, out, True)
+        return
     if net in POWER_NETS:
         _pwr_count[0] += 1
         ref = f"#PWR{_pwr_count[0]:04d}"
@@ -338,7 +343,8 @@ def _attach(sheet, net, x, y, pin_angle, net_sheets, single_nets, tag=""):
                 [Sym("in_bom"), Sym("yes")], [Sym("on_board"), Sym("yes")], [Sym("dnp"), Sym("no")],
                 [Sym("uuid"), u],
                 prop("Reference", ref, x, y, hide=True),
-                prop("Value", net, x, y + (3.0 if net == "GND" else -3.0)),
+                prop("Value", net, *_beyond(x, y, out, 5.0 if out in (0, 180) else 4.5),
+                     justify={0: "left", 180: "right"}.get(out)),
                 prop("Footprint", "", x, y, hide=True),
                 prop("Datasheet", "", x, y, hide=True),
                 [Sym("pin"), "1", [Sym("uuid"), uid("pwrpin", sheet.name, tag)]],
@@ -347,6 +353,11 @@ def _attach(sheet, net, x, y, pin_angle, net_sheets, single_nets, tag=""):
         sheet.items.append(node)
         return
     sheet.label(net, x, y, out, net_sheets.get(net, 1) > 1)
+
+
+def _beyond(x, y, out, d):
+    dx, dy = {0: (1, 0), 90: (0, -1), 180: (-1, 0), 270: (0, 1)}[out]
+    return round(x + dx * d, 4), round(y + dy * d, 4)
 
 
 def build():

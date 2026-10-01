@@ -134,7 +134,7 @@ ESP32 ADC (12-bit, use `analogReadMilliVolts`, 11 dB attenuation):
 | IO0 `ADC_NTC` | `R_ntc = 10k · V/(3.3 − V)`; Beta model B=3950, R25=10k. V > 3.2 V ⇒ no NTC fitted |
 | IO1 `ADC_VCHK` | `V_B+S = 2 · V`. Must agree with ADS1115 `B+S` within ±60 mV (ESP32 ADC is coarse) else `ADC_FAULT` |
 | IO3 `ADC_VIN` | `V_IN = V / 0.3197` |
-| IO4 `ADC_TBRD` | `T = 25 + (V − V25)/(−0.0021)` °C, `V25` calibrated at first boot assuming ambient (default 0.640 V) |
+| IO4 `ADC_TBRD` | `T = 25 + (V − V25)/(−0.00197)` °C, `V25` calibrated at first boot assuming ambient (default 0.601 V) |
 
 ## 6. Hardware safety chain (`SAFE_EN`) – what firmware must respect
 
@@ -162,7 +162,7 @@ Per-channel hardware protections that firmware will observe:
 | Protection | Trip | Firmware sees |
 |------------|------|---------------|
 | CV limit (charger) | Kelvin V_cell ≥ 3.576 V (3.51–3.62) | current tapers to 0 |
-| OV latch | Kelvin V_cell ≥ 3.82 V (3.78–3.87) | cell isolated **and** charger drive killed; releases only when V_cell < 2.74 V (cell removed) **or when SAFE_EN goes low** — firmware can reset all latches by stopping the heartbeat for ≥ 60 ms |
+| OV latch | Kelvin V_cell ≥ 3.82 V (3.78–3.87) | cell isolated **and** charger drive killed; releases only when V_cell < 2.74 V (cell removed) **or when SAFE_EN goes low** — firmware can reset all latches by stopping the heartbeat for ≥ 100 ms (firmware uses 120 ms) |
 | Discharge UV backstop | Kelvin V_cell < 2.22 V under load; discharge cannot (re)start below 2.59 V | discharge current stops; use a charge pulse for IR on cells below 2.6 V |
 | Reverse polarity | B− more than ~1.6 V above B+ | cell isolated (~0.1 mA residual), charger drive killed; `V_cell` negative |
 | Unpowered | PSU off | cell isolated by back-to-back MOSFETs; residual drain ≈ 80 µA via the sense networks (≈ 0.4 %/month) |

@@ -1129,26 +1129,18 @@
       "${INTERSHEET_REFS}"
       (at 33.02 43.18 180)
       (effects (font (size 1.27 1.27)) (justify right) hide)))
-  (symbol
-    (lib_id "power:GND")
-    (at 33.02 45.72 270)
-    (unit 1)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (uuid "7e09f3d3-efd4-56b5-aea1-f306ebd48112")
-    (property "Reference" "#PWR0429" (at 33.02 45.72 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 33.02 48.72 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "" (at 33.02 45.72 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 33.02 45.72 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "d202189e-1892-5442-8ebc-663dd8b2459d"))
-    (instances
-      (project
-        "lfp8"
-        (path
-          "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0429")
-          (unit 1)))))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 33.02 45.72 180)
+    (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify right))
+    (uuid "587ed3d1-a494-5954-a44b-d8487730d0ef")
+    (property
+      "Intersheetrefs"
+      "${INTERSHEET_REFS}"
+      (at 33.02 45.72 180)
+      (effects (font (size 1.27 1.27)) (justify right) hide)))
   (symbol
     (lib_id "Device:Polyfuse")
     (at 53.34 43.18 0)
@@ -1230,8 +1222,8 @@
     (on_board yes)
     (dnp no)
     (uuid "b983c04a-9a18-537e-b851-fbdf8865adab")
-    (property "Reference" "#PWR0430" (at 71.12 46.99 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 71.12 49.99 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0368" (at 71.12 46.99 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 71.12 51.49 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 71.12 46.99 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 71.12 46.99 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "42c14b8a-d3bf-501c-bf7e-ca2bf5f75d25"))
@@ -1240,7 +1232,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0430")
+          (reference "#PWR0368")
           (unit 1)))))
   (symbol
     (lib_id "Device:C")
@@ -1283,8 +1275,8 @@
     (on_board yes)
     (dnp no)
     (uuid "2092699b-952c-5c6a-91b3-70facd05c6c9")
-    (property "Reference" "#PWR0431" (at 86.36 46.99 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 86.36 49.99 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0369" (at 86.36 46.99 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 86.36 51.49 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 86.36 46.99 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 86.36 46.99 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "f0e1f210-a61b-5be5-9480-98b7c6182cd8"))
@@ -1293,7 +1285,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0431")
+          (reference "#PWR0369")
           (unit 1)))))
   (symbol
     (lib_id "Device:R")
@@ -1414,8 +1406,8 @@
     (on_board yes)
     (dnp no)
     (uuid "7187bf64-dac7-5f26-b70f-2a5d94334386")
-    (property "Reference" "#PWR0432" (at 129.54 46.99 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 129.54 49.99 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0370" (at 129.54 46.99 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 129.54 51.49 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 129.54 46.99 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 129.54 46.99 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "5b5d32a0-a66d-5505-99e5-61fee158c746"))
@@ -1424,7 +1416,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0432")
+          (reference "#PWR0370")
           (unit 1)))))
   (symbol
     (lib_id "Transistor_FET:AO3401A")
@@ -1469,8 +1461,8 @@
     (on_board yes)
     (dnp no)
     (uuid "69959d0f-2d95-5bdd-9100-2528cef06a37")
-    (property "Reference" "#PWR0433" (at 154.94 50.8 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+5V" (at 154.94 47.8 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0371" (at 154.94 50.8 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "+5V" (at 154.94 55.3 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 154.94 50.8 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 154.94 50.8 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "7862fd80-d557-5c2c-859a-f9ded1e99ec9"))
@@ -1479,7 +1471,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0433")
+          (reference "#PWR0371")
           (unit 1)))))
   (label
     "CH1_8"
@@ -1528,8 +1520,8 @@
     (on_board yes)
     (dnp no)
     (uuid "92007f9b-0ccf-5f90-845f-abf9aba08c1c")
-    (property "Reference" "#PWR0434" (at 172.72 46.99 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+5V" (at 172.72 43.99 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0372" (at 172.72 46.99 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "+5V" (at 172.72 51.49 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 172.72 46.99 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 172.72 46.99 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "30090d73-321d-563d-9869-b1b4e0c9a002"))
@@ -1538,7 +1530,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0434")
+          (reference "#PWR0372")
           (unit 1)))))
   (symbol
     (lib_id "Device:C")
@@ -1581,8 +1573,8 @@
     (on_board yes)
     (dnp no)
     (uuid "48f06c97-ba98-5a9b-a939-a1ce5b1703b1")
-    (property "Reference" "#PWR0435" (at 187.96 46.99 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+5V" (at 187.96 43.99 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0373" (at 187.96 46.99 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "+5V" (at 187.96 51.49 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 187.96 46.99 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 187.96 46.99 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "cb0719f9-5c9a-5711-a179-c5292a623a17"))
@@ -1591,7 +1583,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0435")
+          (reference "#PWR0373")
           (unit 1)))))
   (symbol
     (lib_id "Transistor_BJT:MMBT3904")
@@ -1728,8 +1720,8 @@
     (on_board yes)
     (dnp no)
     (uuid "34d5aa23-56d9-5572-971e-2a6b1fad91df")
-    (property "Reference" "#PWR0436" (at 246.38 46.99 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 246.38 49.99 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0374" (at 246.38 46.99 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 246.38 51.49 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 246.38 46.99 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 246.38 46.99 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "3de94948-fbb1-5e3e-a990-f382c5991be4"))
@@ -1738,7 +1730,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0436")
+          (reference "#PWR0374")
           (unit 1)))))
   (symbol
     (lib_id "Device:D_Schottky")
@@ -1902,8 +1894,8 @@
     (on_board yes)
     (dnp no)
     (uuid "428c40eb-a6fb-5a17-b708-a2b2391b0535")
-    (property "Reference" "#PWR0437" (at 317.5 46.99 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 317.5 49.99 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0375" (at 317.5 46.99 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 317.5 51.49 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 317.5 46.99 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 317.5 46.99 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "ca6666a5-359c-54df-b66c-8204cda7ba0a"))
@@ -1912,7 +1904,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0437")
+          (reference "#PWR0375")
           (unit 1)))))
   (symbol
     (lib_id "Device:D_Schottky")
@@ -2037,8 +2029,8 @@
     (on_board yes)
     (dnp no)
     (uuid "2f1d0aee-c35f-51be-aba4-9633ed159c67")
-    (property "Reference" "#PWR0438" (at 403.86 48.26 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 403.86 51.26 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0376" (at 403.86 48.26 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 403.86 52.76 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 403.86 48.26 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 403.86 48.26 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "5c40fbbd-eaad-5ba6-9610-39fd677489dc"))
@@ -2047,7 +2039,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0438")
+          (reference "#PWR0376")
           (unit 1)))))
   (label
     "NB_8"
@@ -2279,8 +2271,8 @@
     (on_board yes)
     (dnp no)
     (uuid "5942ebb1-c103-50b9-a38d-bbd5d0e5c871")
-    (property "Reference" "#PWR0439" (at 561.34 53.34 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 561.34 56.34 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0377" (at 561.34 53.34 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 561.34 57.84 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 561.34 53.34 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 561.34 53.34 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "73753a8c-f041-52f9-86bb-cc939ec83526"))
@@ -2289,7 +2281,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0439")
+          (reference "#PWR0377")
           (unit 1)))))
   (symbol
     (lib_id "power:+5V")
@@ -2299,8 +2291,8 @@
     (on_board yes)
     (dnp no)
     (uuid "f281f2b4-754f-5d22-9afc-1fcb6667effb")
-    (property "Reference" "#PWR0440" (at 561.34 38.1 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+5V" (at 561.34 35.1 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0378" (at 561.34 38.1 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "+5V" (at 561.34 33.6 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 561.34 38.1 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 561.34 38.1 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "147de15b-0e36-50b9-9b6b-e175816d99be"))
@@ -2309,7 +2301,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0440")
+          (reference "#PWR0378")
           (unit 1)))))
   (symbol
     (lib_id "Device:C")
@@ -2346,8 +2338,8 @@
     (on_board yes)
     (dnp no)
     (uuid "17a45dac-9e60-5053-a86c-59507cd581cc")
-    (property "Reference" "#PWR0441" (at 25.4 77.47 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+5V" (at 25.4 74.47 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0379" (at 25.4 77.47 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "+5V" (at 25.4 72.97 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 25.4 77.47 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 25.4 77.47 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "5169798a-1db0-5709-8eec-2a895f47d6df"))
@@ -2356,7 +2348,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0441")
+          (reference "#PWR0379")
           (unit 1)))))
   (symbol
     (lib_id "power:GND")
@@ -2366,8 +2358,8 @@
     (on_board yes)
     (dnp no)
     (uuid "f5880ae2-3623-5e91-90bc-73750a3fbd42")
-    (property "Reference" "#PWR0442" (at 25.4 85.09 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 25.4 88.09 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0380" (at 25.4 85.09 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 25.4 89.59 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 25.4 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 25.4 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "57ad114a-1ba8-54e6-a3d3-f518b078c1da"))
@@ -2376,7 +2368,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0442")
+          (reference "#PWR0380")
           (unit 1)))))
   (symbol
     (lib_id "Device:R")
@@ -2503,8 +2495,8 @@
     (on_board yes)
     (dnp no)
     (uuid "85f21b24-2e06-5cde-aa24-7b3f5f470ad2")
-    (property "Reference" "#PWR0443" (at 68.58 85.09 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 68.58 88.09 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0381" (at 68.58 85.09 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 68.58 89.59 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 68.58 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 68.58 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "dd665f2e-0a97-5a49-93cf-db132e8056fe"))
@@ -2513,7 +2505,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0443")
+          (reference "#PWR0381")
           (unit 1)))))
   (symbol
     (lib_id "Device:R")
@@ -2595,8 +2587,8 @@
     (on_board yes)
     (dnp no)
     (uuid "afb425b8-a672-5c4e-a4ae-2cb06b88e2ff")
-    (property "Reference" "#PWR0444" (at 96.52 85.09 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 96.52 88.09 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0382" (at 96.52 85.09 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 96.52 89.59 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 96.52 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 96.52 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "7d6b57ec-c201-5280-9576-eb4de922c340"))
@@ -2605,7 +2597,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0444")
+          (reference "#PWR0382")
           (unit 1)))))
   (symbol
     (lib_id "Device:R")
@@ -2726,8 +2718,8 @@
     (on_board yes)
     (dnp no)
     (uuid "8b723613-67fb-5082-b5ec-4b3658a82960")
-    (property "Reference" "#PWR0445" (at 142.24 85.09 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 142.24 88.09 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0383" (at 142.24 85.09 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 142.24 89.59 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 142.24 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 142.24 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "0c1eae70-faa7-5dfb-8774-8e7d48905f7c"))
@@ -2736,7 +2728,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0445")
+          (reference "#PWR0383")
           (unit 1)))))
   (symbol
     (lib_id "Device:D_Schottky")
@@ -2864,8 +2856,8 @@
     (on_board yes)
     (dnp no)
     (uuid "ea49b961-0d18-5e99-9e67-7f9c3629875d")
-    (property "Reference" "#PWR0446" (at 203.2 85.09 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 203.2 88.09 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0384" (at 203.2 85.09 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 203.2 89.59 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 203.2 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 203.2 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "579fa83d-1667-53ba-a273-8c0162661e27"))
@@ -2874,7 +2866,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0446")
+          (reference "#PWR0384")
           (unit 1)))))
   (symbol
     (lib_id "Device:R")
@@ -3001,8 +2993,8 @@
     (on_board yes)
     (dnp no)
     (uuid "b4f80f07-8028-51a5-bc58-a572a0f1f5cd")
-    (property "Reference" "#PWR0447" (at 243.84 85.09 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 243.84 88.09 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0385" (at 243.84 85.09 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 243.84 89.59 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 243.84 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 243.84 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "0b7866b8-6873-5a73-9a12-319cd1b8839b"))
@@ -3011,7 +3003,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0447")
+          (reference "#PWR0385")
           (unit 1)))))
   (symbol
     (lib_id "Device:R")
@@ -3132,8 +3124,8 @@
     (on_board yes)
     (dnp no)
     (uuid "96de22b0-bd97-50f7-aea3-2dacf8c39b3f")
-    (property "Reference" "#PWR0448" (at 289.56 85.09 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 289.56 88.09 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0386" (at 289.56 85.09 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 289.56 89.59 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 289.56 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 289.56 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "8421ad2e-a3fa-55c4-bd14-c53482997937"))
@@ -3142,7 +3134,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0448")
+          (reference "#PWR0386")
           (unit 1)))))
   (symbol
     (lib_id "Device:D_Schottky")
@@ -3315,8 +3307,8 @@
     (on_board yes)
     (dnp no)
     (uuid "62e2a44b-f711-54d0-a4be-a8109ecabac3")
-    (property "Reference" "#PWR0449" (at 365.76 87.63 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 365.76 90.63 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0387" (at 365.76 87.63 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 365.76 92.13 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 365.76 87.63 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 365.76 87.63 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "a0c7099a-3a09-5ab2-abc4-ba410fc2abbf"))
@@ -3325,7 +3317,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0449")
+          (reference "#PWR0387")
           (unit 1)))))
   (symbol
     (lib_id "Device:R")
@@ -3491,8 +3483,8 @@
     (on_board yes)
     (dnp no)
     (uuid "ba601064-6a0c-5223-a35d-f760ecddb944")
-    (property "Reference" "#PWR0450" (at 419.1 85.09 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 419.1 88.09 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0388" (at 419.1 85.09 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 419.1 89.59 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 419.1 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 419.1 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "142cb658-b1a2-5846-88ee-e285caf26544"))
@@ -3501,7 +3493,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0450")
+          (reference "#PWR0388")
           (unit 1)))))
   (symbol
     (lib_id "Device:R")
@@ -3583,8 +3575,8 @@
     (on_board yes)
     (dnp no)
     (uuid "3a0072d8-5d66-5bd0-8eef-9923bd68c8aa")
-    (property "Reference" "#PWR0451" (at 447.04 85.09 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 447.04 88.09 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0389" (at 447.04 85.09 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 447.04 89.59 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 447.04 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 447.04 85.09 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "b44278e1-1721-5547-a3a7-2e8a8fde0fac"))
@@ -3593,7 +3585,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0451")
+          (reference "#PWR0389")
           (unit 1)))))
   (symbol
     (lib_id "Transistor_FET:AO3400A")
@@ -3638,8 +3630,8 @@
     (on_board yes)
     (dnp no)
     (uuid "26b113e6-8af0-5715-acd4-0915a9884671")
-    (property "Reference" "#PWR0452" (at 472.44 88.9 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 472.44 91.9 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0390" (at 472.44 88.9 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 472.44 93.4 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 472.44 88.9 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 472.44 88.9 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "8a986d91-0b17-5cf3-a159-88488d96e61b"))
@@ -3648,7 +3640,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0452")
+          (reference "#PWR0390")
           (unit 1)))))
   (label
     "DLOAD_8"
@@ -3896,8 +3888,8 @@
     (on_board yes)
     (dnp no)
     (uuid "91c125fb-4c4f-5d0c-a479-a69fafeee0f2")
-    (property "Reference" "#PWR0453" (at 22.86 123.19 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 22.86 126.19 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0391" (at 22.86 123.19 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 22.86 127.69 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 22.86 123.19 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 22.86 123.19 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "7a0f76cd-d42f-584f-86af-9a100796c21c"))
@@ -3906,7 +3898,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0453")
+          (reference "#PWR0391")
           (unit 1)))))
   (symbol
     (lib_id "Device:C")
@@ -3949,8 +3941,8 @@
     (on_board yes)
     (dnp no)
     (uuid "0be24b4a-13d8-5704-8f09-3a2e385bc1ae")
-    (property "Reference" "#PWR0454" (at 38.1 123.19 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 38.1 126.19 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0392" (at 38.1 123.19 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 38.1 127.69 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 38.1 123.19 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 38.1 123.19 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "58b49bae-d4fc-5010-8ec7-eb854fef674b"))
@@ -3959,7 +3951,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0454")
+          (reference "#PWR0392")
           (unit 1)))))
   (symbol
     (lib_id "Device:R")
@@ -4086,8 +4078,8 @@
     (on_board yes)
     (dnp no)
     (uuid "f45e1a01-7628-570f-b22b-1672c2e5f27e")
-    (property "Reference" "#PWR0455" (at 78.74 123.19 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 78.74 126.19 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0393" (at 78.74 123.19 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 78.74 127.69 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 78.74 123.19 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 78.74 123.19 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "ca7f2d4e-8b08-57b4-bc28-8a71907e3922"))
@@ -4096,7 +4088,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0455")
+          (reference "#PWR0393")
           (unit 1)))))
   (symbol
     (lib_id "Device:R")
@@ -4415,8 +4407,8 @@
     (on_board yes)
     (dnp no)
     (uuid "f11804e4-4338-5dd4-86e9-52aac2a00c85")
-    (property "Reference" "#PWR0456" (at 261.62 127 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+5V" (at 261.62 124 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0394" (at 261.62 127 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "+5V" (at 261.62 131.5 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 261.62 127 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 261.62 127 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "1555e267-dc50-5236-b565-f840cc172ff7"))
@@ -4425,7 +4417,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0456")
+          (reference "#PWR0394")
           (unit 1)))))
   (label
     "GISO_8"
@@ -4468,8 +4460,8 @@
     (on_board yes)
     (dnp no)
     (uuid "9d7d364a-7ddf-59b1-9f10-8014da98c937")
-    (property "Reference" "#PWR0457" (at 281.94 115.57 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+5V" (at 281.94 112.57 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0395" (at 281.94 115.57 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "+5V" (at 281.94 111.07 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 281.94 115.57 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 281.94 115.57 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "3775e3cc-8fc6-5b85-b85a-fdd41a4d1175"))
@@ -4478,7 +4470,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0457")
+          (reference "#PWR0395")
           (unit 1)))))
   (label
     "GPB_8"
@@ -4537,8 +4529,8 @@
     (on_board yes)
     (dnp no)
     (uuid "0064bc89-c357-51f4-a4d3-3fadd6022623")
-    (property "Reference" "#PWR0458" (at 309.88 124.46 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 309.88 127.46 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0396" (at 309.88 124.46 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 309.88 128.96 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 309.88 124.46 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 309.88 124.46 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "7f7d1056-0e33-5f79-bfe3-543a29fd7592"))
@@ -4547,7 +4539,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0458")
+          (reference "#PWR0396")
           (unit 1)))))
   (label
     "GPB_8"
@@ -4629,8 +4621,8 @@
     (on_board yes)
     (dnp no)
     (uuid "15e3024e-ee81-5f7c-a4e5-944abae2331f")
-    (property "Reference" "#PWR0459" (at 342.9 115.57 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+5V" (at 342.9 112.57 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0397" (at 342.9 115.57 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "+5V" (at 342.9 111.07 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 342.9 115.57 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 342.9 115.57 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "1714eed0-74b6-57f3-9706-f1ac8ac9724c"))
@@ -4639,7 +4631,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0459")
+          (reference "#PWR0397")
           (unit 1)))))
   (label
     "GEN_8"
@@ -5011,8 +5003,8 @@
     (on_board yes)
     (dnp no)
     (uuid "23782a41-52ca-5595-acda-273fba5fa7b6")
-    (property "Reference" "#PWR0460" (at 541.02 124.46 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 541.02 127.46 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0398" (at 541.02 124.46 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 541.02 128.96 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 541.02 124.46 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 541.02 124.46 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "0acbaeee-77cb-58aa-9124-4d062f942e21"))
@@ -5021,7 +5013,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0460")
+          (reference "#PWR0398")
           (unit 1)))))
   (label
     "GEN_8"
@@ -5070,8 +5062,8 @@
     (on_board yes)
     (dnp no)
     (uuid "249bff6b-8100-5ee8-afed-5e423441e42f")
-    (property "Reference" "#PWR0461" (at 561.34 123.19 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 561.34 126.19 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0399" (at 561.34 123.19 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 561.34 127.69 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 561.34 123.19 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 561.34 123.19 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "12de9731-00e6-5d3e-9e1e-101b0cea04c4"))
@@ -5080,7 +5072,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0461")
+          (reference "#PWR0399")
           (unit 1)))))
   (symbol
     (lib_id "Device:R_Shunt")
@@ -5122,26 +5114,18 @@
     (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid "ee7b00a4-b0fd-577f-a982-79c36119f84e"))
-  (symbol
-    (lib_id "power:GND")
-    (at 26.67 154.94 90)
-    (unit 1)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (uuid "f9b1e6e6-7180-5977-b062-9ba6b840797d")
-    (property "Reference" "#PWR0462" (at 26.67 154.94 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 26.67 157.94 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "" (at 26.67 154.94 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 26.67 154.94 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "888a9550-bc16-59f0-8da3-3063be3fc4de"))
-    (instances
-      (project
-        "lfp8"
-        (path
-          "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0462")
-          (unit 1)))))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 26.67 154.94 0)
+    (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid "c85c638e-4ff9-55b4-a45b-dc8a8c9cae0c")
+    (property
+      "Intersheetrefs"
+      "${INTERSHEET_REFS}"
+      (at 26.67 154.94 0)
+      (effects (font (size 1.27 1.27)) (justify left) hide)))
   (label
     "SHPK_8"
     (at 26.67 160.02 0)
@@ -5373,8 +5357,8 @@
     (on_board yes)
     (dnp no)
     (uuid "05e371c9-b625-50a2-83c2-5dfe83b80772")
-    (property "Reference" "#PWR0463" (at 99.06 151.13 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+3V3" (at 99.06 148.13 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0400" (at 99.06 151.13 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "+3V3" (at 99.06 146.63 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 99.06 151.13 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 99.06 151.13 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "aad9373b-90a7-57e2-b70a-1b2dfa9443de"))
@@ -5383,7 +5367,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0463")
+          (reference "#PWR0400")
           (unit 1)))))
   (global_label
     "NTC_8"
@@ -5448,8 +5432,8 @@
     (on_board yes)
     (dnp no)
     (uuid "0613eb63-047b-5524-acdb-b01447958944")
-    (property "Reference" "#PWR0464" (at 114.3 163.83 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 114.3 166.83 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "#PWR0401" (at 114.3 163.83 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 114.3 168.33 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 114.3 163.83 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 114.3 163.83 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "a20d66ea-951b-5032-a4da-2269c85269d2"))
@@ -5458,7 +5442,7 @@
         "lfp8"
         (path
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0464")
+          (reference "#PWR0401")
           (unit 1)))))
   (symbol
     (lib_id "Device:R")
@@ -5537,26 +5521,18 @@
           "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
           (reference "D806")
           (unit 1)))))
-  (symbol
-    (lib_id "power:GND")
-    (at 146.05 147.32 270)
-    (unit 1)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (uuid "6bd70661-f4f7-5199-b942-923aa2b00f2b")
-    (property "Reference" "#PWR0465" (at 146.05 147.32 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 146.05 150.32 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "" (at 146.05 147.32 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 146.05 147.32 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid "86605181-f84d-5294-8e5f-7f5df5ae1e66"))
-    (instances
-      (project
-        "lfp8"
-        (path
-          "/7d5fbd5d-9ab9-590f-9054-f75e8336e40e/a646c6f7-2e3e-5754-9c8c-aa0adb3748b7"
-          (reference "#PWR0465")
-          (unit 1)))))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 146.05 147.32 180)
+    (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify right))
+    (uuid "728e4b24-0391-5b8d-8a1c-518ec1249f2e")
+    (property
+      "Intersheetrefs"
+      "${INTERSHEET_REFS}"
+      (at 146.05 147.32 180)
+      (effects (font (size 1.27 1.27)) (justify right) hide)))
   (label
     "LEDA_8"
     (at 153.67 147.32 0)
