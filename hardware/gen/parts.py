@@ -63,15 +63,23 @@ C0805 = {"10u": "C15850", "22u": "C45783", "1u": "C28323", "47u": "C16780"}
 C1206 = {"100u": "C15008", "22u": "C12891", "10u": "C13585"}
 
 
+# On the JLCPCB basic/preferred list but library type "expand" (= preferred extended:
+# no loading fee in Economic PCBA).  Source: /tmp/assembly-details.csv + ComponentList.csv,
+# 2026-10-01 (CDFER jlcpcb-parts-database scrape).
+R0603_PREFERRED = {"C23146", "C23147", "C23221", "C4197", "C23265", "C12447", "C23159"}
+
+
 def resistor(value, size="0603"):
     key = f"R_{size}_{value}"
     if key in P:
         return P[key]
     lcsc = {"0603": R0603}[size][value]
+    pref = lcsc in R0603_PREFERRED
     return _add(PartDef(key, "Device:R", f"Resistor_SMD:R_{size}_1608Metric", TWO,
-                        lcsc=lcsc, jlc="Basic", value=value,
+                        lcsc=lcsc, jlc="Preferred" if pref else "Basic", value=value,
                         desc=f"Resistor {value} 1% {size}",
-                        spice="R{ref} {1} {2} " + spice_val(value), verified="cdfer-basic"))
+                        spice="R{ref} {1} {2} " + spice_val(value),
+                        verified="cdfer-preferred (expand, no loading fee)" if pref else "cdfer-basic"))
 
 
 def capacitor(value, size="0603"):

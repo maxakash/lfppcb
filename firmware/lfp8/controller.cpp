@@ -325,15 +325,22 @@ void Controller::i2cFail(uint8_t k, const char *why, uint32_t nowMs) {
 void Controller::scanStep(uint32_t nowUs, uint32_t nowMs) {
   switch (scanSt_) {
     case ScanSt::Select: {
-      // An IR measurement that is ready takes the ADC between two channels.
-      if (sup_.powerAllowed()) {
-        for (int k = 0; k < kNumCh; k++) {
+      // An IR measurement that is ready takes the ADC between two channels, but
+      // only after a full sweep since the previous one (queued IRs would
+      // otherwise run back to back and starve every other channel).
+      if (sup_.powerAllowed() && scansSinceIr_ >= kNumCh) {
+        // round robin from the channel after the scan position, so a queue of
+        // IRs is served fairly
+        for (int n = 0; n < kNumCh; n++) {
+          int k = (scanCh_ + n) % kNumCh;
           if (ch_[k].irReady()) {
+            scansSinceIr_ = 0;
             irStart((uint8_t)(k + 1), nowMs);
             return;
           }
         }
       }
+      if (scansSinceIr_ < kNumCh) scansSinceIr_++;
       scanCh_ = (uint8_t)(scanCh_ % kNumCh + 1);
       if (scanCh_ == 1) {
         scanCycleMs_ = nowMs - cycleStartMs_;

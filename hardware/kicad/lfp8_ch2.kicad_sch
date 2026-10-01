@@ -2969,7 +2969,7 @@
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 243.84 81.28 0) (effects (font (size 1.27 1.27)) hide))
     (property "LCSC" "C23146" (at 243.84 81.28 0) (effects (font (size 1.27 1.27)) hide))
-    (property "JLC" "Basic" (at 243.84 81.28 0) (effects (font (size 1.27 1.27)) hide))
+    (property "JLC" "Preferred" (at 243.84 81.28 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "58b5aea3-e9ea-576d-8149-2977f3d503fa"))
     (pin "2" (uuid "ca64b8d8-e09a-5656-8de1-18cbe8c51907"))
     (instances
@@ -3283,7 +3283,7 @@
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 365.76 83.82 0) (effects (font (size 1.27 1.27)) hide))
     (property "LCSC" "C23147" (at 365.76 83.82 0) (effects (font (size 1.27 1.27)) hide))
-    (property "JLC" "Basic" (at 365.76 83.82 0) (effects (font (size 1.27 1.27)) hide))
+    (property "JLC" "Preferred" (at 365.76 83.82 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "39322e1f-4688-5a5a-a1ea-3f54175c287e"))
     (pin "2" (uuid "f1e5c090-45b6-5bba-bff0-510daf7470b8"))
     (instances
@@ -4009,7 +4009,7 @@
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 63.5 121.92 0) (effects (font (size 1.27 1.27)) hide))
     (property "LCSC" "C23221" (at 63.5 121.92 0) (effects (font (size 1.27 1.27)) hide))
-    (property "JLC" "Basic" (at 63.5 121.92 0) (effects (font (size 1.27 1.27)) hide))
+    (property "JLC" "Preferred" (at 63.5 121.92 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "7211218b-1c7d-5c1d-ad59-4910ff927d54"))
     (pin "2" (uuid "6b51540a-0728-5615-b3b9-42a1c27f3766"))
     (instances
@@ -4107,7 +4107,7 @@
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 91.44 119.38 0) (effects (font (size 1.27 1.27)) hide))
     (property "LCSC" "C4197" (at 91.44 119.38 0) (effects (font (size 1.27 1.27)) hide))
-    (property "JLC" "Basic" (at 91.44 119.38 0) (effects (font (size 1.27 1.27)) hide))
+    (property "JLC" "Preferred" (at 91.44 119.38 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "dce02639-ee70-591a-9015-6fa6a6fc81a6"))
     (pin "2" (uuid "039ddd4b-0b16-5aae-a448-237532d11936"))
     (instances
@@ -4781,7 +4781,7 @@
       (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "~" (at 434.34 119.38 0) (effects (font (size 1.27 1.27)) hide))
     (property "LCSC" "C23265" (at 434.34 119.38 0) (effects (font (size 1.27 1.27)) hide))
-    (property "JLC" "Basic" (at 434.34 119.38 0) (effects (font (size 1.27 1.27)) hide))
+    (property "JLC" "Preferred" (at 434.34 119.38 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid "58798f0f-8151-50c5-930a-9aede9119b72"))
     (pin "2" (uuid "e7751f41-6d15-5b90-a7ac-410ca6f3be6f"))
     (instances

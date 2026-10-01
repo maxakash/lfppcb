@@ -35,10 +35,44 @@ Files are in `hardware/fab/` (regenerate with `make -C hardware fab`).
    rotate parts), or correct `ROT_DB` in `hardware/gen/make_fab.py` and
    regenerate.
 
-Rough cost (October 2026): 5 bare boards 216 × 146 mm ≈ $25–35, assembly
-≈ $8 setup + $18 extended-part fees + parts. Each board carries ≈ 820 placed
-parts, about $12–15 of parts, most of it the ESP32 module and the ADS1115. A
-full set of 5 assembled boards lands around $150–200 plus shipping.
+### Cost estimate (October 2026, before shipping and tax)
+
+Researched and cross-checked against JLCPCB's fee pages, 2026 checkout records
+and the JLC part database. No live quote was possible from the build machine,
+so upload the files for an exact figure.
+
+| Order | PCB fab | Fixed PCBA fees¹ | Joints² | X-ray³ | Parts | **Total** | **Per board** |
+|---|---|---|---|---|---|---|---|
+| 5 PCBs, 2 assembled (JLC minimum) | ≈ $26 | $29 | $6 | $3 | ≈ $44 | ≈ $108 | **≈ $54** |
+| 5 PCBs, 5 assembled (one 40-cell set) | ≈ $26 | $29 | $16 | $8 | ≈ $100 | ≈ $180 | **≈ $36** |
+| 10 PCBs, 10 assembled | ≈ $46 | $29 | $32 | $16 | ≈ $185 | ≈ $308 | **≈ $31** |
+
+1. Economic PCBA, once per order:
+   * setup $8.18
+   * stencil $1.53
+   * nitrogen reflow ≈ $0.90
+   * $3.07 loading fee for each of the 6 extended part types: ESP32-C3 module,
+     ADS1115, 0.1 Ω shunt, 1.2 Ω and 11 Ω 2512 resistors, PTC. The other 60
+     BOM lines are basic or preferred parts and pay no loading fee.
+2. 2016 SMT joints per board × $0.0016.
+3. $1.64 per board if JLCPCB X-rays the ESP32 module's ground pad.
+
+* Uncertainty is about ±15 %. The bare-PCB price ($20–34 for 5) and the
+  basic-part prices are the soft spots. A $9 monthly SMT coupon may apply.
+* Hand-soldered connectors (§2) add about $0.5–1 per board at LCSC minimum
+  quantities.
+* The board must stay on **Economic** PCBA:
+  * 216 × 146 mm fits its 480 × 320 mm limit.
+  * It is under the 650 cm² large-size fee threshold.
+  * Standard PCBA would add ≈ $107 per order: feeder fees on all 66 BOM lines,
+    higher setup and stencil fees.
+* JLCPCB adds 5 mm edge rails automatically, because the ESP32 antenna sits at
+  the edge (about +$1–3).
+* Economic PCBA quantities are probably 2, 5, 10…, so check whether 3 or 4
+  assembled boards can be selected.
+* Shipping, tariffs and taxes depend on the destination. Example: to the US
+  with DHL DDP (≈ $50–75), JLCPCB's pre-collected tariff (≈ 35 %) and state
+  sales tax, the landed cost is ≈ $64–68 per board for the 5-board order.
 
 ## 2. Hand-soldered parts (per board)
 

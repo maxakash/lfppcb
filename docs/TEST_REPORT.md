@@ -9,7 +9,7 @@ Everything here is reproducible with `./run_all_tests.sh`. Raw numbers:
 | ngspice: functional + adversarial + Monte Carlo + stability (`sim/tests`) | 32 | **all pass** |
 | Schematic netlist == DSL netlist (`verify_netlist.py`) | 835 parts, 431 nets | **pass** |
 | PCB: DRC, PCB netlist == DSL, current capacity, BOM (`check_pcb.py`) | see §4 | see §4 |
-| Firmware host tests (`make -C firmware test`) | 76 tests, 2194 checks + simulated 8-cell capacity run | **all pass** |
+| Firmware host tests (`make -C firmware test`) | 78 tests, 2230 checks + simulated 8-cell capacity run | **all pass** |
 | Firmware ESP32-C3 build (arduino-cli, esp32 core 3.3.12) | flash 63 %, RAM 50 % | **pass** |
 | Holder printability (`mechanical/check_printability.py`) | mesh + fit checks | **pass** |
 
@@ -104,7 +104,7 @@ PCB_RESULTS_PLACEHOLDER
 ## 5. Firmware
 
 `make -C firmware test` builds the portable controller core on the host and
-runs 76 unit tests (2194 checks). They cover:
+runs 78 unit tests (2230 checks). They cover:
 * the charge, discharge, capacity and IR state machines
 * the thermal pulse policy
 * the OV-latch reset sequence
@@ -113,6 +113,11 @@ runs 76 unit tests (2194 checks). They cover:
 * empty and reversed slots
 * the JSON API
 * the watchdog timing
+* IR bursts: 8 simultaneous IR tests, and 3 IR tests while 5 channels discharge,
+  finish without starving the scanner. This is a regression test for a bug found
+  in review: queued IR pulses used to run back to back and fault the other
+  channels with `FAULT_ADC`. The scanner now runs at most one IR pulse per
+  full sweep.
 
 A simulated 8-cell capacity test (`sim_cell_test`) checks the controller
 against cell models with hardware CV spread 3.51–3.62 V:

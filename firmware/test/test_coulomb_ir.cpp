@@ -184,3 +184,49 @@ TEST(ir_full_loop_charge_pulse_fallback_below_2v65) {
   printf("    charge pulse: R_ohmic = %.3f mOhm, R_dc = %.3f mOhm at %.3f A\n", res.irOhmicMohm, res.irDcMohm,
          res.irI);
 }
+
+// Regression: IR measurements that become ready together used to run back to
+// back (each ~1.1 s holds the ADC), so the other channels went > kStaleSampleMs
+// without a valid sample and faulted with FAULT_ADC "no valid measurement".
+// The scanner must run at most one IR per full sweep of all channels.
+static int irBurst(int nIr, bool othersDischarge) {
+  std::unique_ptr<Rig> rp(new Rig);
+  Rig &r = *rp;
+  for (int k = 0; k < kNumCh; k++) {
+    SimCell &c = r.sim.cell[k];
+    c = SimCell();
+    c.present = true;
+    c.soc = 0.50;
+    c.qAh = 15.0;
+  }
+  r.begin();
+  r.run(1.0);
+  for (int k = 1; k <= nIr; k++) CHECK(r.start(k, Program::Ir) == nullptr);
+  if (othersDischarge)
+    for (int k = nIr + 1; k <= kNumCh; k++) CHECK(r.start(k, Program::Discharge) == nullptr);
+  bool allIrDone = r.runUntil([&] {
+    for (int k = 1; k <= nIr; k++)
+      if (r.st(k) != ChState::Done) return false;
+    return true;
+  }, 60.0);
+  CHECK(allIrDone);
+  int faults = 0;
+  for (int k = 1; k <= kNumCh; k++) {
+    if (chStateIsFault(r.st(k))) {
+      faults++;
+      printf("    ch%d faulted\n", k);
+    }
+  }
+  for (int k = 1; k <= nIr; k++) CHECK(r.ctl.channel(k).result().hasIr);
+  if (othersDischarge)
+    for (int k = nIr + 1; k <= kNumCh; k++) CHECK(r.st(k) == ChState::Discharging);
+  return faults;
+}
+
+TEST(ir_burst_all_channels_no_starvation) {
+  CHECK_EQ(irBurst(kNumCh, false), 0);
+}
+
+TEST(ir_burst_while_other_channels_discharge) {
+  CHECK_EQ(irBurst(3, true), 0);
+}

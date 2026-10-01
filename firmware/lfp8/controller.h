@@ -164,6 +164,10 @@ class Controller {
   int32_t ntcMv_ = -1, vchkMvA_ = -1, vchkMvB_ = -1;
   Extra extra_ = Extra::None;
   uint32_t cycle_ = 0;
+  // Channels scanned since the last IR pulse. An IR pulse holds the ADC for ~1.1 s,
+  // so at most one runs per full sweep: every channel gets a fresh sample between
+  // two pulses and none goes stale (kStaleSampleMs) when several IRs queue up.
+  uint8_t scansSinceIr_ = kNumCh;
   uint32_t cycleStartMs_ = 0, scanCycleMs_ = 0;
   uint8_t i2cStreak_ = 0;
   uint32_t i2cErrors_ = 0;
