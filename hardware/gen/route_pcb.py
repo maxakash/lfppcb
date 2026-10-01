@@ -48,8 +48,9 @@ def q(n):
     return f'"{n}"' if re.search(r'[\s()"]', n) or n == "" else n
 
 
-def rewrite_classes(classes):
-    txt = open(DSN).read()
+def rewrite_classes(classes, dsn=None):
+    dsn = dsn or DSN
+    txt = open(dsn).read()
     start = txt.index("    (class kicad_default")
     end = txt.index("  (wiring")
     blocks = []
@@ -79,22 +80,25 @@ def rewrite_classes(classes):
             i = new.index("  (network")
             j = new.rindex("  )", 0, i)
             new = new[:j] + ps + new[j:]
-    open(DSN, "w").write(new)
+    open(dsn, "w").write(new)
 
 
-def run_freerouting(passes):
-    cmd = ["java", "-Xmx6g", "-jar", JAR, "--gui.enabled=false", "-de", DSN, "-do", SES, "-mp", str(passes),
+def run_freerouting(passes, dsn=None, ses=None, logname="freerouting.log"):
+    dsn, ses = dsn or DSN, ses or SES
+    if os.path.exists(ses):
+        os.remove(ses)
+    cmd = ["java", "-Xmx6g", "-jar", JAR, "--gui.enabled=false", "-de", dsn, "-do", ses, "-mp", str(passes),
            "-mt", "1"]
     print(" ".join(cmd), flush=True)
-    log = open(os.path.join(KDIR, "freerouting.log"), "w")
+    log = open(os.path.join(os.path.dirname(dsn), logname), "w")
     r = subprocess.run(cmd, stdout=log, stderr=subprocess.STDOUT)
     log.close()
-    if r.returncode != 0 or not os.path.exists(SES):
+    if r.returncode != 0 or not os.path.exists(ses):
         raise SystemExit("freerouting failed, see freerouting.log")
 
 
-def import_ses(board):
-    tree = parse(open(SES).read())
+def import_ses(board, ses=None):
+    tree = parse(open(ses or SES).read())
     routes = find(tree, "routes")
     res = find(routes, "resolution")
     scale = {"um": 1e-3, "mil": 0.0254, "mm": 1.0, "inch": 25.4}[str(res[1])] / float(res[2])   # -> mm
